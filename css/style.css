@@ -1,3 +1,11 @@
 body {
     text-align: center;
 }
+
+#score-header {
+  font-family: 'Gaegu', cursive;
+  margin-bottom: 0%;
+  margin-top: 5%;
+  font-size: 4em;
+  color: #1552b5;
+}
