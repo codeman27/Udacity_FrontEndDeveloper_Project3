@@ -2,11 +2,11 @@
 var Enemy = function(x, y) {
     this.x = x;
     this.y = y;
-    this.speed = 200;
+    this.speed = 20;
     this.startingPointX = [-100, -200, -300];
-    this.startingPointY = [145, 225, 60];
-    this.maxSpeedIncrease = 200;
+    this.maxSpeedIncrease = 2;
     this.speedIncrease;
+    this.rightCollision;
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -26,8 +26,22 @@ Enemy.prototype.update = function(dt) {
       this.speedIncrease = Math.floor(Math.random() * Math.floor(this.maxSpeedIncrease));
       this.x = this.startingPointX[Math.floor(Math.random() * Math.floor(this.startingPointX.length))];
     }
-
+    this.detectCollision();
 };
+
+Enemy.prototype.detectCollision = function() {
+  if(this.x >= player.x && this.x <= player.rightCollision) {
+    if(this.y === player.y) {
+      console.log('COLLISION!!!');
+    }
+  }
+  else if(this.rightCollision >= player.x && this.rightCollision <= player.rightCollision) {
+    if(this.y === player.y) {
+      console.log('COLLISION!!!');
+    }
+  }
+  this.rightCollision = this.x + 80;
+}
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -41,6 +55,7 @@ var Player = function(x, y) {
   this.x = x;
   this.y = y;
   this.sprite = 'images/char-boy.png';
+  this.rightCollision;
 }
 
 Player.prototype.update = function() {
@@ -64,13 +79,14 @@ Player.prototype.handleInput = function(direction) {
   else if(direction === 'down' && this.y <= 295) {
     this.y += 80;
   }
+  this.rightCollision = this.x + 80;
 }
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-var enemy1 = new Enemy(0, 145);
-var enemy2 = new Enemy(0, 225);
-var enemy3 = new Enemy(0, 60);
+var enemy1 = new Enemy(0, 215);
+var enemy2 = new Enemy(0, 135);
+var enemy3 = new Enemy(0, 55);
 var allEnemies = [];
 allEnemies.push(enemy1);
 allEnemies.push(enemy2);
