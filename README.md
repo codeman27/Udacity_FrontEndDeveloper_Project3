@@ -1,5 +1,4 @@
 # Udacity_FrontEndDeveloperProject3
-===============================
 ## About The Game
 -Try to cross the street
 -Don't let the bugs hit you
