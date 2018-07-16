@@ -11,8 +11,6 @@ var Enemy = function(x, y) {
     this.sprite = 'images/enemy-bug.png';
 };
 
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
   //Reset bug when it goes off screen, set the speed randomly, detect collisions on the player
     if(this.x <= 510) {
@@ -25,6 +23,7 @@ Enemy.prototype.update = function(dt) {
     this.detectCollision();
 };
 
+//Detect collisions with player
 Enemy.prototype.detectCollision = function() {
   if(this.x >= player.x && this.x <= player.rightCollision) {
     if(this.y === player.y) {
@@ -78,6 +77,7 @@ Player.prototype.handleInput = function(direction) {
   this.rightCollision = this.x + 80;
 }
 
+//If a collision is detected then the lose conidition is passed and points are taken off the board
 Player.prototype.resetPlayer = function(condition) {
   this.x = 200;
   this.y = 375;
@@ -87,6 +87,7 @@ Player.prototype.resetPlayer = function(condition) {
   }
 }
 
+//Victory! You get more points and have to restart
 Player.prototype.victory = function() {
   this.score += 100;
   this.scoreBoard.innerHTML = this.score;
