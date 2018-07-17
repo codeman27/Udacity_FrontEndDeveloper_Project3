@@ -1,5 +1,25 @@
 # Udacity_FrontEndDeveloperProject3
-## About The Game
+A game similar to frogger, cross the street and try not get run over by the giant bugs.
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+No prerequisites required to run this project.
+
+### Installing
+
+- Clone the repository
+
+```
+git clone https://github.com/codeman27/Udacity_FrontEndDeveloper_Project3.git
+cd Udacity_FrontEndDeveloper_Project3
+```
+- Open index.html
+
+## Playing The Game
 - Try to cross the street
 - Don't let the bugs hit you
 - Get to the blue
