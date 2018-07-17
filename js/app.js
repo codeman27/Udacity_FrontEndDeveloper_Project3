@@ -1,7 +1,15 @@
+ function GameObject(x, y) {
+  this.x = x;
+  this.y = y;
+}
+
+GameObject.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
 // Enemies our player must avoid
-var Enemy = function(x, y) {
-    this.x = x;
-    this.y = y;
+function Enemy(x, y) {
+    GameObject.call(this, x, y);
     this.speed = 200;
     this.startingPointX = [-100, -200, -300];
     this.maxSpeedIncrease = 200;
@@ -10,6 +18,9 @@ var Enemy = function(x, y) {
 
     this.sprite = 'images/enemy-bug.png';
 };
+
+Enemy.prototype = Object.create(GameObject.prototype);
+Enemy.prototype.constructor = Enemy;
 
 Enemy.prototype.update = function(dt) {
   //Reset bug when it goes off screen, set the speed randomly, detect collisions on the player
@@ -38,27 +49,21 @@ Enemy.prototype.detectCollision = function() {
   this.rightCollision = this.x + 80;
 }
 
-Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
-
-var Player = function(x, y) {
-  this.x = x;
-  this.y = y;
+function Player(x, y) {
+  GameObject.call(this, x, y);
   this.sprite = 'images/char-boy.png';
   this.rightCollision;
   this.score = 0;
   this.scoreBoard = document.getElementById('score');
 }
 
+Player.prototype = Object.create(GameObject.prototype);
+Player.prototype.constructor = Player;
+
 Player.prototype.update = function() {
   if(this.y === -25) {
     player.victory();
   }
-}
-
-Player.prototype.render = function() {
-  ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
 Player.prototype.handleInput = function(direction) {
